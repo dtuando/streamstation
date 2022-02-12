@@ -1,0 +1,20 @@
+version: "3"
+services:
+  restreamer:
+    image: datarhei/restreamer:latest
+    environment:
+      - RS_USERNAME=admin
+      - RS_PASSWORD=PASSWORD_HERE
+      - RS_AUDIO=auto
+      - RS_TIMEZONE=America/Los_Angeles
+    volumes:
+      - /mnt/restreamer/db:/restreamer/db
+    ports:
+      - 8080:8080
+  owncast:
+    image: gabekangas/owncast:latest
+    volumes:
+      - .data:/app/data
+    ports:
+      - 8081:8080
+      - 1935:1935
